@@ -1,0 +1,100 @@
+/* 1 - Display all the information of the EMP table?
+*/
+SELECT * FROM EMP;
+
+/* 2- Display unique Jobs from EMP table? */
+
+SELECT DISTINCT JOB FROM EMP;
+
+/* 3 - List the employees who joined before 1981.*/
+
+SELECT ENAME, EMPNO FROM EMP
+WHERE HIREDATE < '1-JAN-81';
+
+/* 4. List the employees who are working for the Deptno 10 or 20.*/
+
+SELECT ENAME, DEPTNO FROM EMP
+WHERE DEPTNO IN (10, 20);
+
+/* 5 -List all the Clerks of Deptno 20.*/
+SELECT ENAME, JOB, DEPTNO FROM EMP
+WHERE JOB LIKE 'CLERK' AND  DEPTNO IN (20);
+
+/* 6-Display the details of SMITH.*/
+SELECT * FROM EMP
+WHERE ENAME LIKE 'SMITH';
+
+Display the location of SMITH.
+NO LOCATION FOUND IN TABLES
+
+
+/* 8 - List the employees whose salary is more than 3000 after giving 20% increment.*/
+
+SELECT ENAME, DEPTNO, JOB, (SAL + SAL*0.3) AS NEW_SAL FROM EMP
+
+WHERE (SAL + SAL*0.3) >3000;
+
+/* 10. List the employees those who joined in company before 15th of the month.*/ 
+SELECT * FROM EMP
+WHERE TO_CHAR(HIREDATE, 'DD') < '19';
+
+/* 11. List the employees who are working as Managers.*/
+SELECT * FROM EMP
+WHERE JOB LIKE 'MANAGER';
+
+/*12. List the Ename and Salary is increased by 15% and expressed as no.of Dollars.*/
+SELECT ENAME , ( SAL + SAL*0.15) AS NEWSAL FROM EMP;
+
+/*13. Produce the output of EMP table ‘EMP_AND_JOB’ for Ename and Job.*/
+SELECT EMPNO,  ENAME || " " || JOB AS ENAME_AND_JOB FROM EMP;
+
+/*14. Produce the following output from EMP.
+LOYEE
+SMITH (clerk)
+ALLEN (Salesman)*/
+SELECT ENAME || '(' || JOB || ')' FROM EMP;
+
+/* 15. Display the unique department with jobs. */
+SELECT DISTINCT DEPTNO, JOB FROM EMP;
+
+/* 16. Display the details of the Blake.*/
+SELECT * FROM EMP
+WHERE ENAME LIKE 'BLAKE';
+
+/* 17. List all the clerks.*/
+SELECT * FROM EMP
+WHERE JOB LIKE 'CLERK';
+
+/* 18. List the empno, salary, commission of employees.*/
+SELECT EMPNO, SAL, COMM FROM EMP;
+
+/* 19. Display the unique department of the employees.*/
+SELECT DISTINCT DEPTNO FROM EMP;
+
+/* 20. List all the employees joined on 1st may 81.*/
+SELECT ENAME , HIREDATE FROM EMP
+WHERE HIREDATE = '1-MAY-81';
+
+/* 21. List the employees who are working as managers.*/
+SELECT * FROM EMP
+WHERE JOB LIKE 'MANAGER';
+
+/* 22. List the employees who are either clerks or managers.*/
+SELECT * FROM EMP
+WHERE JOB LIKE 'CLERK' OR JOB LIKE 'MANAGER'; 
+
+/*23. List the employees who have joined on the following dates 1 may 81,17 Nov 81,30 Dec 81*/
+SELECT * FROM EMP
+WHERE HIREDATE IN ('1-MAY-81', '17-NOV-81', '30-DEC-81');
+
+/*24. List the employees who have joined in the year 1981.*/
+SELECT * FROM EMP
+WHERE INSTR(HIREDATE, '87') !=0;
+
+/*54. Compute yearly salary of SMITH.*/
+SELECT ENAME, (SAL*12) AS YEAR_SAL FROM EMP
+WHERE ENAME LIKE 'SMITH';
+
+/*55. Compute daily salary of JONES.*/
+SELECT ENAME, ROUND(( SAL/30), 2) AS DAILY_SAL FROM EMP
+WHERE ENAME LIKE 'JONES'

@@ -101,3 +101,34 @@ WHERE ENAME LIKE 'JONES'
 
 /* 56. Calculate the total monthly salary of all employees.*/
 SELECT ENAME, (SAL * 12) AS YEARLY_SAL FROM EMP; 
+
+/* 213. List the employees who are working under ‘MGR’ along with Manager name.*/
+SELECT E.ENAME, E.JOB, E.MGR
+FROM EMP E JOIN EMP M ON (E.MGR = M.MGR)
+WHERE E.JOB = 'MANAGER';
+
+/* 214. List the total information of EMP table along with DNAME and Location of all the employees Working Under ‘ACCOUNTING’ & ‘RESEARCH’ in the ascending Deptno.*/
+SELECT E.ENAME, D.DNAME, D.LOC, D.DEPTNO
+FROM EMP E LEFT OUTER JOIN DEPT D ON (E.DEPTNO = D.DEPTNO)
+WHERE D.DNAME != 'SALES'
+ORDER BY D.DEPTNO;
+
+/* 215. List the Empno, Ename, Salary, Dname of all the ‘MGRS’ and 
+‘ANALYST’ working in New York, Dallas with an experience more than 7 years without receiving the Comm ascending order of Location.*/
+SELECT E.EMPNO, E.ENAME, E.JOB ,E.SAL, D.DNAME, D.LOC
+FROM EMP E LEFT OUTER JOIN DEPT D ON ( E.DEPTNO = D.DEPTNO)
+WHERE E.JOB IN ('MANAGER' , 'ANALYST') AND D.LOC IN ('NEW YORK','DALLAS');
+
+/* 216. Display the Empno, Ename, Salary, Dname, Location, Deptno, Job of all employees
+working at CJICAGO or working for ACCOUNTING dept with Annual Salary>28000, but the Salary 
+should not be=3000 or 2800 who doesn’t belongs to the Manager and whose no is having a digit
+‘7’ or ‘8’ in 3rd position in the ascending order of Deptno and descending order of job.*/
+ SELECT E.EMPNO, E.ENAME, E.JOB,E.MGR, E.SAL, D.DNAME, D.LOC, D.DEPTNO FROM EMP E LEFT OUTER JOIN DEPT D ON ( E.DEPTNO = D.DEPTNO)
+ WHERE D.LOC LIKE 'CHICAGO' OR (D.DNAME = 'ACCOUNTING' AND  (E.SAL *12) > 28000) AND (E.MGR!=E.EMPNO) ;
+ 
+ 
+
+
+
+
+                         

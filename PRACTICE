@@ -98,3 +98,6 @@ WHERE ENAME LIKE 'SMITH';
 /*55. Compute daily salary of JONES.*/
 SELECT ENAME, ROUND(( SAL/30), 2) AS DAILY_SAL FROM EMP
 WHERE ENAME LIKE 'JONES'
+
+/* 56. Calculate the total monthly salary of all employees.*/
+SELECT ENAME, (SAL * 12) AS YEARLY_SAL FROM EMP; 
